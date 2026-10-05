@@ -1,0 +1,2 @@
+description = "Kiro-derived Morphe hunt stage via target-hunter."
+prompt = "In the main session, check actual artifacts and delegate this bounded task to `target-hunter`. The injected definition is stage guidance, not permission to expand scope. For morphe, consume its recommendation and perform any actual delegation in main. Device and Git actions need explicit request/confirmation.\n\n@{.gemini/agents/target-hunter.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"

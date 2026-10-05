@@ -1,0 +1,2 @@
+description = "Build, list, and locally apply Morphe patches to verify registration and fingerprint matching. Use after patch source exists or when diagnosing build and match failures."
+prompt = "Run in the main Gemini session; follow the loaded workflow and delegate one bounded stage at a time. Do not advance without artifact evidence or required approvals.\n\n@{.gemini/skills/validate-patch/SKILL.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"

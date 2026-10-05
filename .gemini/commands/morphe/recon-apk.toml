@@ -1,0 +1,2 @@
+description = "Inspect an authorized APK, APKM, APKS, or XAPK and create a structured Morphe reconnaissance report. Use for a new app before decompilation or patch target analysis."
+prompt = "Run in the main Gemini session; follow the loaded workflow and delegate one bounded stage at a time. Do not advance without artifact evidence or required approvals.\n\n@{.gemini/skills/recon-apk/SKILL.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"

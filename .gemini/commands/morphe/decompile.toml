@@ -1,0 +1,2 @@
+description = "Kiro-derived Morphe decompile stage via apk-decompiler."
+prompt = "In the main session, check actual artifacts and delegate this bounded task to `apk-decompiler`. The injected definition is stage guidance, not permission to expand scope. For morphe, consume its recommendation and perform any actual delegation in main. Device and Git actions need explicit request/confirmation.\n\n@{.gemini/agents/apk-decompiler.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"

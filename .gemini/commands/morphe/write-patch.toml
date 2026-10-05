@@ -1,0 +1,2 @@
+description = "Implement an approved Morphe patch design from smali-verified findings. Use only after target evidence exists and the user has approved the proposed source changes."
+prompt = "Run in the main Gemini session; follow the loaded workflow and delegate one bounded stage at a time. Do not advance without artifact evidence or required approvals.\n\n@{.gemini/skills/write-patch/SKILL.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"

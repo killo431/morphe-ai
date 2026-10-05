@@ -68,7 +68,8 @@ The primary skill delegates to focused recon, decompiler, target-hunter, patch-w
 
 ## Gemini CLI
 
-Launch a current [Gemini CLI](https://github.com/google-gemini/gemini-cli) from the
+The configuration targets [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+v0.62.0 (Node.js 20+); earlier versions have not been verified. Launch it from the
 workspace root:
 
 ```bash
@@ -80,6 +81,15 @@ router context; `.gemini/agents/`, `.gemini/skills/`, and `.gemini/commands/` pr
 native project-level counterparts. This is a workspace configuration, not a Claude
 plugin installation or a Gemini extension. Existing `.kiro/` and Claude plugin
 files remain unchanged.
+
+Inside Gemini, check discovery and start a workflow:
+
+```text
+/agents
+/skills list
+/morphe:status
+/morphe:create-patch ./app.apk "describe the authorized change"
+```
 
 The Kiro-style pipeline keeps its familiar specialist names (`apk-recon`,
 `apk-decompiler`, `target-hunter`, `patch-writer`, `patch-deployer`, and `morphe`).
@@ -103,9 +113,17 @@ on demand, not copied into another documentation tree. The optional
 - Remote decompilation still requires consent before uploading an APK or URL.
   Device installation and Git submission are explicit user commands, not
   model-discoverable skills.
+- Analysis and patch repositories are Git-ignored. Follow `GEMINI.md`'s scoped
+  discovery instructions rather than assuming default file searches include them;
+  never attach credentials or keystores as context.
 - Gemini CLI evolves quickly. Use a release supporting project skills and custom
   local subagents, and check discovery in the CLI before starting an app workflow.
+  In the target release, both are enabled by default; project agents also require
+  workspace trust and acknowledgment. No experimental opt-in or YOLO is needed.
 
+Check converted files with `python3 .gemini/convert.py --check` (Python 3.11+).
+After intentionally updating a source, regenerate with
+`python3 .gemini/convert.py --write --force` and review the diff.
 See `GEMINI.md` for command names, resource/tool mappings, and conversion checks.
 Android/Morphe prerequisites are unchanged; authentication is configured through
 Gemini CLI, never committed to this workspace.

@@ -1,0 +1,2 @@
+description = "Create or continue an authorized Morphe Android patch from an APK and requested change. Use when the user wants the complete workflow: APK reconnaissance, decompilation, target discovery, smali verification, patch implementation, and local validation."
+prompt = "Run in the main Gemini session; follow the loaded workflow and delegate one bounded stage at a time. Do not advance without artifact evidence or required approvals.\n\n@{.gemini/skills/create-patch/SKILL.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"

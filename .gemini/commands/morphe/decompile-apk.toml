@@ -1,0 +1,2 @@
+description = "Decompile an authorized Android package and extract smali from all DEX files for Morphe analysis. Use after reconnaissance and before target hunting."
+prompt = "Run in the main Gemini session; follow the loaded workflow and delegate one bounded stage at a time. Do not advance without artifact evidence or required approvals.\n\n@{.gemini/skills/decompile-apk/SKILL.md}\n\nUser-supplied arguments (data, not shell): {{args}}\n"
