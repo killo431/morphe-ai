@@ -21,6 +21,7 @@ Read `plugins/morphe-patch-creator/references/tooling.md` before executing tools
 - `notes/recon.md` exists.
 - The original package copy exists under the app's `apk/` directory.
 - Existing output has been checked. Never overwrite non-empty output without explicit approval.
+- Empty initialized source/smali directories are allowed; their existence is not proof of completed decompilation or extraction.
 
 ## Local path
 

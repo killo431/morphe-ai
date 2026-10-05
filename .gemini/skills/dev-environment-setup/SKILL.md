@@ -24,7 +24,7 @@ Main-session orchestration only, with explicit device/submission commands.
   patch builds use the patcher's own pinned baksmali/smali fork, not the distro package)
 - ripgrep (rg) for fast code search
 - GitHub CLI (gh) for auth and releases
-- Python tools via uvx: apkid, androguard
+- Already-installed Python tools: apkid, androguard; uvx provisioning requires explicit approval
 
 > **Note:** `baksmali`/`smali` from apt is fine for local DEX analysis and manual smali reading.
 > It is **not** used during `./gradlew buildAndroid` — the Gradle plugin uses its own pinned fork.
@@ -33,7 +33,7 @@ Main-session orchestration only, with explicit device/submission commands.
 
 ```bash
 sudo apt install -y openjdk-21-jdk jadx libsmali-java apktool aapt ripgrep adb dex2jar gh
-# Python tools — no install needed, uvx runs latest version
+# Python tools — uvx may download/provision dependencies; explicit approval required first
 # uvx apkid app.apk
 # uvx androguard analyze -i app.apk
 ```

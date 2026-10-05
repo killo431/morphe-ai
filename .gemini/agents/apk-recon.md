@@ -42,11 +42,14 @@ You DO NOT:
 
 ### apkid
 - Purpose: Detect obfuscator, packer, compiler, anti-debug, anti-vm per DEX/lib
-- Command: `uvx apkid <apk>`
+- Command: `apkid <apk>` after confirming `command -v apkid`
 - Output format: per-file detections (classes.dex, classes2.dex, native libs)
 - Detects: `compiler`, `obfuscator`, `packer`, `anti_debug`, `anti_vm`, `manipulator`
 - Use when: Identifying protections and build tools
 - Do NOT use when: Not installed (skip and note "unknown" in report)
+- `uvx` availability is not APKiD installation. `uvx apkid` may download and
+  provision dependencies; obtain explicit user approval through the main
+  session before provisioning, or skip and report `unknown`.
 - Tip: Also reveals Flutter/RN via native lib detection (packer: flutter, compiler: dart)
 
 ### unzip (DEX count)
@@ -90,8 +93,8 @@ ALWAYS follow this sequence:
    # Run aapt on analysis/<app>/apk/inspection/base.apk
    ```
 6. Run aapt → package, version, versionCode, minSdk, targetSdk, compileSdk, app label, main activity
-7. Run apkid → obfuscator, packer, anti-debug, anti-vm
-   - IF apkid not available → skip, note "unknown" in report
+7. Check `command -v apkid`, then run the already-installed executable → obfuscator, packer, anti-debug, anti-vm
+   - IF apkid not available → skip and note "unknown", or request explicit approval through the main session before `uvx apkid` provisioning; never infer approval from uvx availability
 8. Run xmltree → split type detection
 9. Run unzip → DEX count + framework detection + native lib architectures
 10. Keep extracted inspection artifacts under the app workspace; do not delete user input.

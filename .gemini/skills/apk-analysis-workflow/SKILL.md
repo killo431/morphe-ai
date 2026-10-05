@@ -43,13 +43,19 @@ For APKM/APKS/XAPK, enumerate nested APKs and select a base-named APK only for m
 Java, and smali analysis. Preserve the full container as the later CLI input. Do not infer that an
 extracted base APK contains code/resources/native libraries shipped in feature or config splits.
 
-Optional protection detection:
+Optional protection detection with an already-installed executable:
 
 ```bash
-uvx apkid "analysis/$APP/apk/<package>"
+if command -v apkid >/dev/null 2>&1; then
+  apkid "analysis/$APP/apk/<package>"
+else
+  echo "APKiD unavailable; protections unknown"
+fi
 ```
 
-Do not install a missing tool automatically.
+Do not install a missing tool automatically. `uvx` availability does not prove
+APKiD is installed: `uvx apkid` may download and provision dependencies and
+requires explicit user approval before that provisioning.
 
 ## 3. Determine app architecture and intended ApkFileType
 
@@ -75,6 +81,11 @@ Architecture indicators:
 - packed/encrypted DEX: static analysis may be blocked; document rather than invent targets.
 
 ## 4. Decompile and extract smali
+
+Empty `decompiled/` and `smali/` directories created during initialization are
+allowed. Only nonempty existing output requires redo approval before overwriting;
+verify any reused output, and never skip extraction merely because an empty
+`smali/` directory exists.
 
 The Kaggle runner is the primary decompilation path (4 cores, 28 GB RAM) for large APKs. Explain
 that the direct URL and downloaded APK are processed by Kaggle, obtain explicit approval, then run

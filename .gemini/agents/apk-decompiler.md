@@ -48,7 +48,7 @@ You DO NOT:
 - Time: 2-5 minutes (push → wait → download)
 - Output: `*_decompiled.zip` in the output directory
 - Use when: You have a direct APK download URL
-- Do NOT use when: `decompiled/` already exists (ask user if redo)
+- Do NOT overwrite nonempty `decompiled/` output without redo approval; an empty initialized directory is allowed.
 
 #### URL Requirements:
 - MUST be a direct download link (clicking it downloads the file)
@@ -71,7 +71,7 @@ You DO NOT:
 - Purpose: Disassemble DEX files to smali bytecode
 - Command: `baksmali d <dex_file> -o analysis/<app>/smali/<name>`
 - Use when: Need smali for fingerprint verification
-- Do NOT use when: `smali/` already exists (skip)
+- Do NOT overwrite nonempty `smali/` output without redo approval. Reuse only verified complete output; never skip extraction because an empty initialized directory exists.
 
 ## 3. Decision Rules
 
@@ -79,7 +79,8 @@ You DO NOT:
 ```
 IF app name not provided → STOP. Say: "What app is this? I need the app name for the output directory."
 IF remote selected and URL not provided → request a direct APK download URL; local jadx needs only the preserved local input.
-IF analysis/<app>/decompiled/ already exists → STOP. Say: "Already decompiled. Redo? (yes/no)"
+IF decompiled/ or smali/ contains existing output → ask the main session whether to reuse verified output or obtain redo approval before overwriting.
+IF these directories are empty or absent → continue; initialization alone is not completed output.
 ```
 
 ### APK Source for Smali
@@ -91,8 +92,8 @@ Find it: `ls analysis/<app>/apk/*`
 ### Execution Order
 ALWAYS follow this sequence. Do NOT skip steps.
 
-1. Check existing: `ls analysis/<app>/decompiled/ analysis/<app>/smali/ 2>/dev/null`
-2. IF already exists → STOP and ask user
+1. Inspect existing source/smali contents, including hidden files and nested output: `find analysis/<app>/decompiled/ analysis/<app>/smali/ -mindepth 1 -print -quit 2>/dev/null`. Distinguish missing/empty directories from inspection errors.
+2. IF existing output is nonempty → ask the main session to approve redo or reuse after verification. Empty initialized directories are allowed and must still be populated; never treat their existence as stage completion.
 3. For remote, verify URL is a direct download link (not a webpage). IF unsure → ask the main session.
 4. Explain that Kaggle receives the URL and downloads/processes the APK; wait for explicit approval.
 5. Only after approval, run: `.kiro/jadx-decompile "<url>" analysis/<app>/`. For local mode, run `jadx --no-res -d "analysis/<app>/decompiled" "<selected-base-apk>"` instead and skip ZIP extraction.
@@ -106,7 +107,11 @@ ALWAYS follow this sequence. Do NOT skip steps.
    APK=$(find "analysis/<app>/apk" -maxdepth 1 -type f | head -1)
    mkdir -p "analysis/<app>/smali"
    TMPDIR_LOCAL="analysis/<app>/apk/dex-extraction"
-   test ! -e "$TMPDIR_LOCAL" || { echo "Extraction output already exists; request approval" >&2; exit 1; }
+   if [[ -e "$TMPDIR_LOCAL" ]]; then
+     [[ -d "$TMPDIR_LOCAL" ]] || { echo "Extraction path is not a directory" >&2; exit 1; }
+     EXISTING_ENTRY=$(find "$TMPDIR_LOCAL" -mindepth 1 -print -quit) || { echo "Cannot inspect extraction output" >&2; exit 1; }
+     [[ -z "$EXISTING_ENTRY" ]] || { echo "Nonempty extraction output requires approval" >&2; exit 1; }
+   fi
    mkdir -p "$TMPDIR_LOCAL"
    DEX_SOURCE="$APK"
    EXT="${APK##*.}"
@@ -161,6 +166,7 @@ After completing, report:
 | jadx-decompile fails | Check log. Report exact error. |
 | "finished with errors" | Record warnings; continue only if useful source and smali verification pass. |
 | 0 Java files after unzip | STOP. Decompilation produced nothing. |
-| smali/ already exists | Skip baksmali. Report existing. |
+| Nonempty source/smali output exists | Request redo approval before overwriting, or reuse only after verifying complete evidence. |
+| Empty initialized decompiled/ or smali/ directory | Continue decompilation/extraction; directory existence is not completed output. |
 | No APK in apk/ folder | STOP. Say: "No APK found. Switch to apk-recon first." |
 | Kaggle timeout (>10min) | STOP. Say: "Kaggle runner may be down." |

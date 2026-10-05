@@ -44,6 +44,11 @@ for a custom key (BKS, PKCS12, or JKS; byte-sniffed, original unchanged).
 
 ## CLI Usage
 
+Application examples retain version compatibility checks. For `patch`, `-f`
+means `--force`; it is not an input-file flag. Add it only for a documented,
+justified override explicitly approved by the user, never to hide a match
+failure. Package-filter `-f` on listing commands has different semantics.
+
 ```bash
 # List patches
 java -jar morphe-cli.jar list-patches --patches "$MPP" -pvo
@@ -52,20 +57,20 @@ java -jar morphe-cli.jar list-patches --patches "$MPP" -pvo
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f analysis/<app>/apk/<app>_<version>.<ext>
+  analysis/<app>/apk/<app>_<version>.<ext>
 
 # Device-changing commands below are explicit-only: show the target and wait for confirmation.
 # Patch + install via ADB
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f -i analysis/<app>/apk/<app>_<version>.<ext>
+  -i analysis/<app>/apk/<app>_<version>.<ext>
 
 # Patch + mount-install (root) — --mount is a boolean flag combined with -i
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f -i --mount analysis/<app>/apk/<app>_<version>.<ext>
+  -i --mount analysis/<app>/apk/<app>_<version>.<ext>
 
 # Install existing patched APK
 java -jar morphe-cli.jar utility install -a analysis/<app>/builds/<app>_patched.apk
@@ -78,7 +83,7 @@ java -jar morphe-cli.jar patch \
   -p "$MPP" \
   --exclusive -e "Patch Name" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f analysis/<app>/apk/<app>_<version>.<ext>
+  analysis/<app>/apk/<app>_<version>.<ext>
 ```
 
 The CLI accepts `.apk`, `.apkm`, `.xapk`, and `.apks`. For split apps, pass the complete

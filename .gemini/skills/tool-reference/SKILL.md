@@ -154,18 +154,23 @@ aapt dump strings app.apk
 
 ## apkid — Protection Detection
 
+Use an already-installed executable after checking `command -v apkid`.
+If it is missing, skip detection and report `unknown` unless the user explicitly
+approves provisioning first. An installed `uvx` is not an installed APKiD:
+`uvx apkid` can download dependencies and requires that prior approval.
+
 ```bash
 # Basic scan
-uvx apkid app.apk
+apkid app.apk
 
 # Verbose (more detail)
-uvx apkid -v app.apk
+apkid -v app.apk
 
 # Recursive (scan inside split APKs)
-uvx apkid -r app.apk
+apkid -r app.apk
 
 # JSON output (for parsing)
-uvx apkid -j app.apk
+apkid -j app.apk
 ```
 
 ### What apkid tells you

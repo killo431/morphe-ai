@@ -54,16 +54,21 @@ PATCHES_DIR="${MORPHE_PATCHES_DIR:-morphe-patches}"
 
 ### morphe-cli (patch)
 - Purpose: Apply patches to APK and produce patched output
-- Command: `java -jar morphe-cli.jar patch -p "$MPP" -o <output> -f <input>`
+- Command: `java -jar morphe-cli.jar patch -p "$MPP" -o <output> <input>`
 - Default keystore `morphe-data/morphe.keystore` is used automatically — no extra flag needed
 - Use when: Build succeeded and patches are listed
 - Do NOT use when: Build failed or no APK found
 
 ### morphe-cli (patch --exclusive)
 - Purpose: Test a single patch fingerprint match
-- Command: `java -jar morphe-cli.jar patch -p "$MPP" --exclusive -e "Patch Name" -o analysis/<app>/builds/test.apk -f <input>`
+- Command: `java -jar morphe-cli.jar patch -p "$MPP" --exclusive -e "Patch Name" -o analysis/<app>/builds/test.apk <input>`
 - Use when: Debugging a specific fingerprint match failure
 - Do NOT use when: Running full patch suite
+
+Keep version compatibility checks enabled by default. For `patch`, `-f` means
+`--force`, not an input-file flag. Use it only for an explicitly justified
+override approved by the user through the main session; record the reason and
+approval, and never force merely to suppress an unexplained match failure.
 
 ### adb
 - Purpose: Install patched APK on connected device

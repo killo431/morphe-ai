@@ -101,10 +101,13 @@ IF nothing found → Ask: "Which app? Give me a name or APK file."
 | What exists | Pipeline stage | Route to |
 |-------------|---------------|----------|
 | Nothing for this app | RECON | **apk-recon**: "Recon `<app>` — APK at `<path>`" |
-| `notes/recon.md` only | DECOMPILE | **apk-decompiler**: "Decompile `<app>` — URL is `<url>`" |
-| `decompiled/` + `smali/` | HUNT | **target-hunter**: "Find targets for `<app>` — looking for `<what>`" |
+| Recon exists, source/smali missing or empty | DECOMPILE | **apk-decompiler**: "Decompile `<app>` — URL is `<url>`" |
+| Nonempty source + smali verified | HUNT | **target-hunter**: "Find targets for `<app>` — looking for `<what>`" |
 | `notes/` with findings | WRITE | **patch-writer**: "Write patches for `<app>`" |
 | `.kt` patch files exist | DEPLOY | **patch-deployer**: "Build and test `<app>`" |
+
+Empty initialized directories are not completed output. Inspect actual source
+and smali files/counts before recommending the hunt stage.
 
 ### What Each Agent Needs
 

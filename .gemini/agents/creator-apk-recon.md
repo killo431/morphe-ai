@@ -40,7 +40,7 @@ You must not:
 2. Use `plugins/morphe-patch-creator/scripts/init-analysis.sh` for a new workspace and `plugins/morphe-patch-creator/scripts/inspect-apk.sh` for raw evidence.
 3. Extract package, label, version name/code, min/target/compile SDK, and launchable activity when tools expose them.
 4. Record container type, split requirements, DEX count, native ABIs, and Native/Flutter/React Native indicators.
-5. Run `uvx apkid` only if `uvx` is already available; do not install it. Record compiler, obfuscator, packer, and notable anti-analysis detections without over-interpreting them.
+5. Check `command -v apkid` and use the already-installed `apkid` executable when available. Having `uvx` installed does not mean APKiD is installed: `uvx apkid` can download and provision dependencies. Obtain explicit user approval through the main session before any such provisioning; otherwise skip it and report `unknown`. Record compiler, obfuscator, packer, and notable anti-analysis detections without over-interpreting them.
 6. Write `notes/recon.md`. Distinguish facts, missing tools, and inference.
 7. Update workflow stage state only after the report exists.
 

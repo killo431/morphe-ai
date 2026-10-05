@@ -23,8 +23,8 @@ Choose one workflow and retain its evidence contract:
 | Evidence / stage | Kiro-style agent | Creator agent |
 |---|---|---|
 | No recon report | `apk-recon` | `creator-apk-recon` |
-| Recon, missing source or smali | `apk-decompiler` | `creator-apk-decompiler` |
-| Source + smali, missing verified findings | `target-hunter` | `creator-target-hunter` |
+| Recon, source or smali missing/empty | `apk-decompiler` | `creator-apk-decompiler` |
+| Nonempty source + smali, missing verified findings | `target-hunter` | `creator-target-hunter` |
 | Verified findings, missing source implementation | `patch-writer` | `creator-patch-writer` |
 | Patch source, missing local validation | `patch-deployer` | `creator-patch-validator` |
 

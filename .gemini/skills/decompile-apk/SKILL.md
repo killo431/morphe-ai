@@ -15,6 +15,7 @@ original helper directory, not `.gemini/`.
 
 1. Require an existing recon report and original package under the app analysis directory.
 2. Check for existing non-empty `decompiled/` or `smali/` output; do not overwrite it without explicit approval.
+   Empty initialized directories are allowed and must still be populated; never skip smali extraction based on directory existence alone.
 3. Prefer `plugins/morphe-patch-creator/scripts/decompile-local.sh`.
 4. Extract all DEX files using `plugins/morphe-patch-creator/scripts/extract-smali.sh`.
 5. Verify non-zero Java/source and smali outputs and record counts.

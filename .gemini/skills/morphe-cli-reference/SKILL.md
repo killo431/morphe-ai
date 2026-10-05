@@ -109,13 +109,17 @@ java -jar morphe-cli.jar patch -p "$MPP" [options] <apk>
 
 ### Standard patch (default keystore)
 
-`-f` is `--force` (skip the version-compatibility check); the APK is the positional last argument.
+The APK is the positional last argument. For `patch`, `-f` is `--force`
+(skip version compatibility), not an input-file flag. Keep compatibility checks
+enabled by default. Use force only for a documented, justified override explicitly
+approved by the user; never to suppress an unexplained match failure.
+`-f` on `list-patches` or `list-versions` remains a package filter, not force.
 
 ```bash
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f analysis/<app>/apk/<app>_<version>.<ext>
+  analysis/<app>/apk/<app>_<version>.<ext>
 ```
 
 ### Patch + install via ADB
@@ -124,7 +128,7 @@ java -jar morphe-cli.jar patch \
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f -i analysis/<app>/apk/<app>_<version>.<ext>
+  -i analysis/<app>/apk/<app>_<version>.<ext>
 ```
 
 ### Patch + mount-install (root)
@@ -134,7 +138,7 @@ java -jar morphe-cli.jar patch \
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f -i --mount analysis/<app>/apk/<app>_<version>.<ext>
+  -i --mount analysis/<app>/apk/<app>_<version>.<ext>
 ```
 
 ### Exclusive mode (only specific patches)
@@ -144,7 +148,7 @@ java -jar morphe-cli.jar patch \
   -p "$MPP" \
   --exclusive -e "Premium Unlock" -e "Remove Ads" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f analysis/<app>/apk/<app>_<version>.<ext>
+  analysis/<app>/apk/<app>_<version>.<ext>
 ```
 
 ### With patch options
@@ -153,7 +157,7 @@ java -jar morphe-cli.jar patch \
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -e "Patch Name" -Okey=value \
-  -f analysis/<app>/apk/<app>_<version>.<ext>
+  analysis/<app>/apk/<app>_<version>.<ext>
 ```
 
 ### Use GitHub/GitLab repo URL directly
@@ -183,7 +187,7 @@ java -jar morphe-cli.jar patch \
 ### Keep temp files for debugging
 
 ```bash
-java -jar morphe-cli.jar patch -p "$MPP" --disable-purge -f input.apk
+java -jar morphe-cli.jar patch -p "$MPP" --disable-purge input.apk
 ```
 
 ### Save patching result report
@@ -340,5 +344,5 @@ java -jar morphe-cli.jar list-patches --patches "$MPP" -pvo
 java -jar morphe-cli.jar patch \
   -p "$MPP" \
   -o analysis/<app>/builds/<app>_patched.apk \
-  -f -i analysis/<app>/apk/<app>_<version>.<ext>
+  -i analysis/<app>/apk/<app>_<version>.<ext>
 ```
