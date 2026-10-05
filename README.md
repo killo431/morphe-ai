@@ -118,7 +118,7 @@ pip install kaggle
 
 ```bash
 # 1. Clone
-git clone https://github.com/Paresh-Maheshwari/morphe-ai.git morphe && cd morphe
+git clone https://github.com/killo431/morphe-ai.git  morphe && cd morphe
 
 # 2. Create .env with your secrets
 cp .env.example .env
