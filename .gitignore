@@ -1,5 +1,7 @@
 # Secrets
 .env
+.gemini/.env
+.gemini/oauth_creds.json
 Morphe.keystore
 analysis/eyecon/notes/secret.md
 

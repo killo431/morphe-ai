@@ -2,7 +2,7 @@
 
 AI-powered Android APK patching workspace. Multi-agent pipeline that automates: APK analysis → decompilation → target hunting → patch writing → build & deploy.
 
-Built with [Kiro CLI](https://kiro.dev), but the prompts, skills, and steering context are **model-agnostic** — adapt them to any AI coding assistant (Cursor, Copilot, Cline, Aider, Claude Code, etc.).
+Built with [Kiro CLI](https://kiro.dev), with parallel Claude Code and Gemini CLI workflows. The prompts, skills, and steering context are **model-agnostic** — adapt them to other AI coding assistants.
 
 **Author:** [Paresh Maheshwari](https://github.com/Paresh-Maheshwari)
 **Repository:** [morphe-ai](https://github.com/Paresh-Maheshwari/morphe-ai)
@@ -65,6 +65,50 @@ The primary skill delegates to focused recon, decompiler, target-hunter, patch-w
 > steering context, so you don't need to memorize commands. Say something like *"how do I create a
 > patch?"* or *"what do you need from me to patch this APK?"* and the agent explains the workflow
 > and walks you through the next step.
+
+## Gemini CLI
+
+Launch a current [Gemini CLI](https://github.com/google-gemini/gemini-cli) from the
+workspace root:
+
+```bash
+gemini
+```
+
+Review the checkout before trusting the workspace. `GEMINI.md` supplies the Morphe
+router context; `.gemini/agents/`, `.gemini/skills/`, and `.gemini/commands/` provide
+native project-level counterparts. This is a workspace configuration, not a Claude
+plugin installation or a Gemini extension. Existing `.kiro/` and Claude plugin
+files remain unchanged.
+
+The Kiro-style pipeline keeps its familiar specialist names (`apk-recon`,
+`apk-decompiler`, `target-hunter`, `patch-writer`, `patch-deployer`, and `morphe`).
+Claude workflow specialists use the `creator-` prefix to keep their evidence/state
+contracts separate. Gemini's main session coordinates stages; the `morphe`
+subagent returns a routing recommendation rather than recursively invoking agents.
+
+Shared `.kiro/steering/` documents, plugin references, and helper scripts are read
+on demand, not copied into another documentation tree. The optional
+`.morphe/config.json` and `MORPHE_PATCHES_DIR` conventions still apply.
+
+### Permissions and platform differences
+
+- Use normal interactive approval mode, not `--yolo` or automatic edit approval.
+- Agent tool lists select available Gemini tools; they do **not** reproduce Kiro's
+  filesystem sandbox or shell-command allowlists. Write boundaries remain
+  instructions, and consequential commands require explicit approval.
+- Kiro startup/build hooks become explicit workflow steps. Gemini does not run the
+  Kiro hooks or load `.kiro/settings/lsp.json`; file search and shell tools are the
+  portable fallback. No MCP server is required or installed.
+- Remote decompilation still requires consent before uploading an APK or URL.
+  Device installation and Git submission are explicit user commands, not
+  model-discoverable skills.
+- Gemini CLI evolves quickly. Use a release supporting project skills and custom
+  local subagents, and check discovery in the CLI before starting an app workflow.
+
+See `GEMINI.md` for command names, resource/tool mappings, and conversion checks.
+Android/Morphe prerequisites are unchanged; authentication is configured through
+Gemini CLI, never committed to this workspace.
 
 ## Using with Other AI Models
 
