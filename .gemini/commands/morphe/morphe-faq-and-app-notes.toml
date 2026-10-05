@@ -1,0 +1,5 @@
+description = "Answer Morphe support and app-format questions from current evidence."
+prompt = """
+Read GEMINI.md and activate the morphe-faq-and-app-notes skill, or read .gemini/skills/morphe-faq-and-app-notes/SKILL.md if activation is unavailable. Verify current source and installed versions before promising support. Treat the following as user arguments, not shell code:
+{{args}}
+"""

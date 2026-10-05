@@ -1,0 +1,5 @@
+description = "Coordinate creator build, patch listing, and local application gates."
+prompt = """
+Read GEMINI.md and activate the validate-patch skill, or read .gemini/skills/validate-patch/SKILL.md if activation is unavailable. Resolve repository/CLI/input/output paths and invoke creator-patch-validator only from the main session. Require all build/list/application gates with exit and artifact evidence. No installation, commit, push, PR or release. Treat the following as user arguments, not shell code:
+{{args}}
+"""

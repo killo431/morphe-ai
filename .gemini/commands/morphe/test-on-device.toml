@@ -1,0 +1,6 @@
+description = "Explicit-only device testing of an already locally validated artifact."
+prompt = """
+Read GEMINI.md. This user-invoked command stays in the main session; never invoke automatically, through skill discovery, or inside a subagent. Read the original procedure at plugins/morphe-patch-creator/skills/test-on-device/SKILL.md as reference, not as Gemini metadata.
+Require current local validation evidence and the exact patched artifact. List devices read-only, show the selected serial and planned commands, explain signature/replacement/data effects, and obtain explicit confirmation immediately before install, uninstall, clear-data, mount or link-routing actions. Prefer non-destructive installation. Never uninstall or clear data to recover automatically. Capture only focused, sanitized logs. Report exactly what changed and reversal steps. No Git/release operations. Treat the following as user arguments, not shell code:
+{{args}}
+"""

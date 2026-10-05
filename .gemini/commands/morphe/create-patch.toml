@@ -1,0 +1,5 @@
+description = "Coordinate the creator workflow in the main Gemini session."
+prompt = """
+Read GEMINI.md and activate the create-patch skill, or read .gemini/skills/create-patch/SKILL.md if activation is unavailable. Only the main session invokes creator- agents; subagents return evidence and recommendations. Resolve the reviewed workspace and original plugins/morphe-patch-creator helpers, validate configuration first, reconcile state with artifacts, and require design/remote approval. No automatic device/Git actions. Treat the following as user arguments, not shell code:
+{{args}}
+"""

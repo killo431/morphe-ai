@@ -1,0 +1,5 @@
+description = "Read exact-smali fingerprint design and debugging guidance."
+prompt = """
+Read GEMINI.md and activate the fingerprinting-guide skill, or read .gemini/skills/fingerprinting-guide/SKILL.md if activation is unavailable. Verify current APIs and authorized smali evidence, not obfuscated identifiers. Keep the chosen pipeline's evidence contract. Treat the following as user arguments, not shell code:
+{{args}}
+"""

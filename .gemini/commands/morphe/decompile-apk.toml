@@ -1,0 +1,5 @@
+description = "Coordinate creator local decompilation and every-base-DEX extraction."
+prompt = """
+Read GEMINI.md and activate the decompile-apk skill, or read .gemini/skills/decompile-apk/SKILL.md if activation is unavailable. Invoke creator-apk-decompiler only from the main session with preserved input, existing-output checks and original helper paths. Local is default; remote requires explicit provider/artifact/URL consent. Require nonempty source and smali. Treat the following as user arguments, not shell code:
+{{args}}
+"""

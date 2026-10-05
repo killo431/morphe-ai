@@ -1,0 +1,5 @@
+description = "Inspect Morphe development prerequisites without automatic installation."
+prompt = """
+Read GEMINI.md and activate the dev-environment-setup skill, or read .gemini/skills/dev-environment-setup/SKILL.md if activation is unavailable. Resolve workspace and patch paths explicitly; obtain approval before installing tools or altering global configuration. Never print credentials. Treat the following as user arguments, not shell code:
+{{args}}
+"""

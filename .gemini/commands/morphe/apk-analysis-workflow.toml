@@ -1,0 +1,5 @@
+description = "Use the Kiro-style authorized APK analysis workflow."
+prompt = """
+Read GEMINI.md and activate the apk-analysis-workflow skill, or read .gemini/skills/apk-analysis-workflow/SKILL.md if activation is unavailable. Follow its evidence and safety contracts. Main-session orchestration only; keep creator workflow state separate. Never execute device or Git mutations automatically. Treat the following as user arguments, not shell code:
+{{args}}
+"""

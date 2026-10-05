@@ -1,0 +1,5 @@
+description = "Read Morphe utility APIs against the configured repository."
+prompt = """
+Read GEMINI.md and activate the morphe-library-reference skill, or read .gemini/skills/morphe-library-reference/SKILL.md if activation is unavailable. Resolve MORPHE_PATCHES_DIR with morphe-patches fallback and discover actual package/group; examples are not fixed workspace paths. Treat the following as user arguments, not shell code:
+{{args}}
+"""

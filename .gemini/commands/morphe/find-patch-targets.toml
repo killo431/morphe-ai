@@ -1,0 +1,5 @@
+description = "Coordinate creator target hunting with exact smali verification."
+prompt = """
+Read GEMINI.md and activate the find-patch-targets skill, or read .gemini/skills/find-patch-targets/SKILL.md if activation is unavailable. Invoke creator-target-hunter only from the main session with exact recon/source/smali paths and authorized requested behavior. Require verified methods, registers, instructions and fingerprint strategy. Treat the following as user arguments, not shell code:
+{{args}}
+"""

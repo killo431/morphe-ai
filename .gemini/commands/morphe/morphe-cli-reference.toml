@@ -1,0 +1,5 @@
+description = "Look up Morphe CLI flags and validate the installed version."
+prompt = """
+Read GEMINI.md and activate the morphe-cli-reference skill, or read .gemini/skills/morphe-cli-reference/SKILL.md if activation is unavailable. Confirm the installed CLI version and original container. Device-changing flag examples are reference only; use explicit main-session commands after confirmation. Treat the following as user arguments, not shell code:
+{{args}}
+"""
