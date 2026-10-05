@@ -1,0 +1,5 @@
+description = "Build and troubleshoot locally; device and submission remain explicit-only."
+prompt = """
+Read GEMINI.md and activate the build-deploy-troubleshoot skill, or read .gemini/skills/build-deploy-troubleshoot/SKILL.md if activation is unavailable. Resolve MORPHE_PATCHES_DIR with morphe-patches fallback. Perform only local build/list/application work automatically; return device/submission requests to the main session's explicit commands with separate approvals. Treat the following as user arguments, not shell code:
+{{args}}
+"""

@@ -1,0 +1,5 @@
+description = "Look up advanced Morphe bytecode and resource APIs."
+prompt = """
+Read GEMINI.md and activate the patcher-advanced-apis skill, or read .gemini/skills/patcher-advanced-apis/SKILL.md if activation is unavailable. Verify API examples in the configured patch repository before use; preserve original smali evidence. Treat the following as user arguments, not shell code:
+{{args}}
+"""

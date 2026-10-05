@@ -1,0 +1,5 @@
+description = "Read upstream patch patterns without assuming workspace namespaces."
+prompt = """
+Read GEMINI.md and activate the real-patch-examples skill, or read .gemini/skills/real-patch-examples/SKILL.md if activation is unavailable. Use examples only when they match authorized evidence; discover actual paths/package group and verify APIs before implementation. Treat the following as user arguments, not shell code:
+{{args}}
+"""

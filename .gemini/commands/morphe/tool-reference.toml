@@ -1,0 +1,5 @@
+description = "Look up portable Android reverse-engineering tool commands."
+prompt = """
+Read GEMINI.md and activate the tool-reference skill, or read .gemini/skills/tool-reference/SKILL.md if activation is unavailable. Tool examples are not permission for uploads, device changes, dependency installation, or destructive operations. Treat the following as user arguments, not shell code:
+{{args}}
+"""

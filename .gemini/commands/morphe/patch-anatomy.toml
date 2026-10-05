@@ -1,0 +1,5 @@
+description = "Read Morphe patch structure and current API guidance."
+prompt = """
+Read GEMINI.md and activate the patch-anatomy skill, or read .gemini/skills/patch-anatomy/SKILL.md if activation is unavailable. Require authorized smali evidence and approved source scope, discover repository namespace, and keep local validation separate from device/submission. Treat the following as user arguments, not shell code:
+{{args}}
+"""

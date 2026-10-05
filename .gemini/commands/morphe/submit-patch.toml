@@ -1,0 +1,6 @@
+description = "Explicit-only approval-gated Git, PR, or release submission."
+prompt = """
+Read GEMINI.md. This user-invoked command stays in the main session; never invoke automatically, through skill discovery, or inside a subagent. Read the original procedure at plugins/morphe-patch-creator/skills/submit-patch/SKILL.md as reference, not as Gemini metadata.
+Require current validation evidence, then inspect status, branch and diff. Exclude APKs, decompiled source, analysis artifacts, credentials and keystores. Show exact files and a conventional commit message. Obtain explicit commit approval, separate push approval, and separate approval for opening a PR or publishing a release. Do not push to main/master unless explicitly requested. Preserve hooks; never alter credential stores or print tokens. Report resulting repository state and remote URLs. Treat the following as user arguments, not shell code:
+{{args}}
+"""

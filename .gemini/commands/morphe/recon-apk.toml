@@ -1,0 +1,5 @@
+description = "Coordinate creator reconnaissance of an authorized local package."
+prompt = """
+Read GEMINI.md and activate the recon-apk skill, or read .gemini/skills/recon-apk/SKILL.md if activation is unavailable. Resolve workspace/input/analysis paths and invoke creator-apk-recon only from the main session. Require report and command evidence; do not mix Kiro-style state. Treat the following as user arguments, not shell code:
+{{args}}
+"""

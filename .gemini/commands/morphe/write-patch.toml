@@ -1,0 +1,5 @@
+description = "Coordinate creator implementation of an explicitly approved design."
+prompt = """
+Read GEMINI.md and activate the write-patch skill, or read .gemini/skills/write-patch/SKILL.md if activation is unavailable. Invoke creator-patch-writer only from the main session after exact smali evidence, resolved repository namespace and explicit source-design approval. Require compile evidence; no device/Git actions. Treat the following as user arguments, not shell code:
+{{args}}
+"""
